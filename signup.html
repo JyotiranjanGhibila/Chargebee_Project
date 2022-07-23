@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signUp</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div>
+        <div id="photo">
+            <img src="https://webstatic.chargebee.com/assets/web/510/images/signup/customers/dailius-wilson-getaccept.png" alt="">
+        </div>
+       <div>
+            <form id="log">
+        
+            <input type="email" id="email">
+            <input type="password" id="password">
+            <input type="submit" value="SignUp">
+            </form>
+       </div>
+    </div>
+</body>
+<script>
+   let form=document.querySelector("form")
+   let singupLS=JSON.parse(localStorage.getItem("singup"))||[]
+   form.addEventListener("submit",function(event){
+    event.preventDefault();
+    let obj={
+       
+        Email:form.email.value,
+        Password:form.password.value
+    }
+          if(obj.Password=="" || obj.Email=="" ){
+               alert("form is Empty")
+               return
+          }
+          singupLS.push(obj)
+          localStorage.setItem("singup",JSON.stringify(singupLS))
+   })
+</script>
+</html>

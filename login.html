@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn</title>
+</head>
+<body>
+    <form>
+        <input type="email" id="email">
+        <input type="password" id="password">
+        <input type="submit" value="singin">
+    </form>
+</body>
+<script>
+    let form=document.querySelector("form")
+   let singupLS=JSON.parse(localStorage.getItem("singup"))||[]
+   form.addEventListener("submit",function(e){
+    e.preventDefault();
+           if(singupLS.length===0){
+            alert("No User");
+            return;
+           }
+           let obj={
+            Email:form.email.value,
+            Password:form.password.value
+           }
+           let isSingned=false;
+           singupLS.forEach(function(elem){
+             if(elem.Email===obj.Email && elem.Password===obj.Password){
+                isSingned==true;
+                localStorage.setItem("singin",JSON.stringify(elem))
+                alert("SignUp Successfully")
+                window.location.href="index.html";
+             }
+           })
+           if(isSingned==false){
+            alert("User Dose not exist")
+           }
+   })
+</script>
+</html>
